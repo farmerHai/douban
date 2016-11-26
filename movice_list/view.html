@@ -1,0 +1,34 @@
+<h1 class="page-header">{{title}}</h1>
+<div class="list-group" >
+	<a href="#" ng-repeat="item in subjects" class="list-group-item">
+		<span class="badge">{{item.rating.average}}</span>
+		<div class="media">
+			<div class="media-left">
+				<img ng-src="{{item.images.small}}" alt="{{item.title}}">
+			</div>
+			<div class="media-body">
+				<h2 class="media-heading">{{item.title}}</h2>
+				<p>导演: <strong><span ng-repeat="d in item.directors">{{d.name}} <span ng-if="!$last">、</span></span></strong></p>
+				<p>类型: <strong>{{item.genres.join('、')}}</strong></p>
+			</div>
+		</div>
+	</a>
+</div>
+<div ng-show="!loading">
+	<p >共有: {{totalCount}}条记录,共{{totalPage}}页</p>
+	<nav>
+		<ul class="pager">
+			<li ng-class="{disabled:currentPage<=1}"><a ng-click="go(currentPage-1)">Previous</a></li>
+			<li ng-class="{disabled:currentPage>=totalPage}"><a ng-click="go(currentPage+1)">Next</a></li>
+		</ul>
+	</nav>
+</div>
+<div class="mask" ng-show="loading">
+	<div class="spinner">
+		<div class="cube1"></div>
+		<div class="cube2"></div>
+	</div>
+</div>
+
+
+
